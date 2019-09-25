@@ -384,6 +384,10 @@ def _rosdep_main(args):
     if options.ros_distro:
         os.environ['ROS_DISTRO'] = options.ros_distro
 
+    if 'ROS_PYTHON_VERSION' not in os.environ:
+        # Default to same python version used to invoke rosdep
+        os.environ['ROS_PYTHON_VERSION'] = sys.version[0]
+
     # Convert list of keys to dictionary
     options.as_root = dict((k, str_to_bool(v)) for k, v in key_list_to_dict(options.as_root).items())
 
